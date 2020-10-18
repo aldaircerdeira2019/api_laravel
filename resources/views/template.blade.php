@@ -25,21 +25,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Entrar') }}</a>
-                        </li>
-                        
+                            <a class="nav-link" href="#">{{ __('Atores') }}</a>
+                        </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Cadastro') }}</a>
+                            <a class="nav-link" href="#">{{ __('Diretores') }}</a>
                         </li> 
                     </ul>
                 </div>
             </div>
         </nav>
         <main class="py-4">
-            @yield('content')
+            <div class="container-fluid">
+                @yield('content')
+            </div>
         </main>
     </div>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src={{ asset('jquery/jquery.min.js') }}></script>
     @yield('section_script')
 </body>
 </html>
