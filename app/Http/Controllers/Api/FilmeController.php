@@ -25,11 +25,15 @@ class FilmeController extends Controller
     }
     public function show($id)
     {
-        $filme = $this->filme->find($id);
+        $filme = $this->filme->consulta($id);
         if(is_null($filme)){
             return response()->json('não encontrado',404);
         }
-        return response()->json(compact('filme'),200);
+        $atores =$this->filme->find($id)->atores;
+        $data= [
+            'filme' => $filme, 'atores' => $atores
+        ];
+        return response()->json($data ,200);
     }
     public function store(Request $request)
     {
