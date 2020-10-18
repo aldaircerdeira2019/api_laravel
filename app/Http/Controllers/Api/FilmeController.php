@@ -16,7 +16,7 @@ class FilmeController extends Controller
     public function index()
     {
         try {
-            $filmes = $this->filme->paginate(20);
+            $filmes = $this->filme->orderBy('id', 'desc')->paginate(15);
             return response()->json(compact('filmes'));
         } catch (\Exception $e) {
             $erro = $e->getMessage();
@@ -27,7 +27,7 @@ class FilmeController extends Controller
     {
         $filme = $this->filme->consulta($id);
         if(is_null($filme)){
-            return response()->json('não encontrado',404);
+            return response()->json(['erro'=>'não encontrado'],404);
         }
         $atores =$this->filme->find($id)->atores;
         $data= [
@@ -47,7 +47,8 @@ class FilmeController extends Controller
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()],400);
+                return response()->json(['errors' => $validator->errors()]);
+                /* return response()->json(['errors' => $validator->errors()],400); */
             }
             $create_filme = $this->filme->create($request->all());
             return response()->json(compact('create_filme'),201);
@@ -83,15 +84,15 @@ class FilmeController extends Controller
         try {
             $filme= $this->filme->find($id);
             if(is_null($filme)){
-                return response()->json('não encontrado',404);
+                return response()->json(['erro' => 'não encontrado']);
             }
             $filme->delete();
-            return response()->json(compact('filme'),204);
+            return response()->json(['success' => 'Operação concluida com êxito']);
         }
         catch (\Exception $e) 
         {
             $erro = $e->getMessage();
-            return response()->json(compact('erro'),500);
+            return response()->json(compact('erro'));
         }
     }
 }
