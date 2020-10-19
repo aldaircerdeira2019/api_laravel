@@ -16,7 +16,7 @@ class AtorController extends Controller
     public function index()
     {
         try {
-            $atores = $this->ator->paginate(20);
+            $atores = $this->ator->orderBy('id', 'desc')->paginate(15);
             return response()->json(compact('atores'),200);
         }
         catch (\Exception $e) 
@@ -47,7 +47,8 @@ class AtorController extends Controller
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()],400);
+                return response()->json(['errors' => $validator->errors()]);
+                /* return response()->json(['errors' => $validator->errors()],400); */
             }
             $create_ator = $this->ator->create($request->all());
             return response()->json(compact('create_ator'),201);
@@ -82,10 +83,12 @@ class AtorController extends Controller
         try {
             $ator= $this->ator->find($id);
             if(is_null($ator)){
-                return response()->json('não encontrado',404);
+                return response()->json(['erro' =>'não encontrado']);
+               /*  return response()->json('não encontrado',404); */
             }
             $ator->delete();
-            return response()->json(compact('ator'),204);
+            return response()->json(compact('ator'));
+            /* return response()->json(compact('ator'),204); */
         }
         catch (\Exception $e) 
         {

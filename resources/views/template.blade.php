@@ -25,7 +25,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Atores') }}</a>
+                            <a class="nav-link" href="{{route('site.ator.index')}}">{{ __('Atores') }}</a>
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('Diretores') }}</a>

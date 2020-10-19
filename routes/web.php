@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Site\HomeController@index');
+Route::get('/site/ator', 'Site\AtoreController@index')->name('site.ator.index');
+//Route::get('/', 'Site\DiretorController@index');
