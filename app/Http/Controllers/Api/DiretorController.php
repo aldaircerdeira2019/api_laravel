@@ -43,7 +43,8 @@ class DiretorController extends Controller
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()],400);
+                return response()->json(['errors' => $validator->errors()]);
+                /* return response()->json(['errors' => $validator->errors()],400); */
             }
             $create_diretor = $this->diretor->create($request->all());
             return response()->json(compact('create_diretor'),201);
@@ -78,10 +79,12 @@ class DiretorController extends Controller
         try {
             $diretor= $this->diretor->find($id);
             if(is_null($diretor)){
-                return response()->json('não encontrado',404);
+                return response()->json(['erro'=>'não encontrado']);
+               /*  return response()->json('não encontrado',404); */
             }
             $diretor->delete();
-            return response()->json(compact('diretor'),204);
+            return response()->json(compact('diretor'));
+            /* return response()->json(compact('diretor'),204); */
         }
         catch (\Exception $e) 
         {

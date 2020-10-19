@@ -28,7 +28,7 @@
                             <a class="nav-link" href="{{route('site.ator.index')}}">{{ __('Atores') }}</a>
                         </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Diretores') }}</a>
+                            <a class="nav-link" href="{{route('site.diretor.index')}}">{{ __('Diretores') }}</a>
                         </li> 
                     </ul>
                 </div>
